@@ -10,7 +10,7 @@
                      Clicked="OnCreateTaskClicked" />
     </ContentPage.ToolbarItems>
 
-    <Grid RowDefinitions="Auto,Auto,Auto,*"
+    <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,*"
           Padding="20,8,20,20"
           RowSpacing="14">
         <VerticalStackLayout Spacing="6">
@@ -44,16 +44,35 @@
             </Grid>
         </Border>
 
-        <Label Grid.Row="2"
+        <SearchBar Grid.Row="2"
+                   x:Name="TaskSearchBar"
+                   Placeholder="Busque por tarefa, contexto ou responsável"
+                   SearchButtonPressed="OnSearchSubmitted"
+                   TextChanged="OnSearchTextChanged" />
+
+        <Grid Grid.Row="3"
+              ColumnDefinitions="*,*"
+              ColumnSpacing="12">
+            <Picker x:Name="TaskStatusPicker"
+                    Title="Situação"
+                    SelectedIndexChanged="OnStatusChanged" />
+            <Picker x:Name="TaskPriorityPicker"
+                    Grid.Column="1"
+                    Title="Prioridade"
+                    SelectedIndexChanged="OnPriorityChanged" />
+        </Grid>
+
+        <Label Grid.Row="4"
                x:Name="StatusLabel"
                IsVisible="False"
                Style="{StaticResource StatusTextStyle}" />
 
-        <RefreshView Grid.Row="3"
+        <RefreshView Grid.Row="5"
                      x:Name="TasksRefreshView"
                      Refreshing="OnRefreshRequested">
             <CollectionView x:Name="TasksCollectionView"
-                            SelectionMode="None">
+                            SelectionMode="Single"
+                            SelectionChanged="OnTaskSelected">
                 <CollectionView.EmptyView>
                     <Label Text="Nenhuma tarefa carregada para o seu contexto."
                            Style="{StaticResource EmptyStateStyle}" />
@@ -90,6 +109,10 @@
                                            Style="{StaticResource SecondaryTextStyle}"
                                            HorizontalTextAlignment="End" />
                                 </Grid>
+
+                                <Label Text="Concluída"
+                                       IsVisible="{Binding Concluida}"
+                                       Style="{StaticResource StatusTextStyle}" />
 
                                 <Label Text="{Binding Observacoes}"
                                        IsVisible="{Binding Observacoes, Converter={x:Null}}"

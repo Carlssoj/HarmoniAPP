@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HarmoniAPP.Mobile.Pages.CreateCustomerPage"
+             SafeAreaEdges="All"
+             Title="Novo cliente">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20,16,20,32"
+                             Spacing="14">
+            <Label Text="Cadastre clientes com contexto comercial e visibilidade da saúde da conta."
+                   Style="{StaticResource SecondaryTextStyle}" />
+
+            <Border Style="{StaticResource FormFieldBorderStyle}">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Empresa"
+                           Style="{StaticResource FieldLabelStyle}" />
+                    <Entry x:Name="CompanyEntry"
+                           Placeholder="Ex: Nexa Saúde" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Grid ColumnDefinitions="*,*"
+                  ColumnSpacing="12">
+                <Border Style="{StaticResource FormFieldBorderStyle}">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Contato principal"
+                               Style="{StaticResource FieldLabelStyle}" />
+                        <Entry x:Name="PrimaryContactEntry"
+                               Placeholder="Ex: Fernanda Costa" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Grid.Column="1"
+                        Style="{StaticResource FormFieldBorderStyle}">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Segmento"
+                               Style="{StaticResource FieldLabelStyle}" />
+                        <Entry x:Name="SegmentEntry"
+                               Placeholder="Ex: Saúde, SaaS, Energia" />
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+            <Grid ColumnDefinitions="*,*"
+                  ColumnSpacing="12">
+                <Border Style="{StaticResource FormFieldBorderStyle}">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="E-mail"
+                               Style="{StaticResource FieldLabelStyle}" />
+                        <Entry x:Name="EmailEntry"
+                               Placeholder="contato@empresa.com"
+                               Keyboard="Email" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Grid.Column="1"
+                        Style="{StaticResource FormFieldBorderStyle}">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Telefone"
+                               Style="{StaticResource FieldLabelStyle}" />
+                        <Entry x:Name="PhoneEntry"
+                               Placeholder="(11) 99999-0000"
+                               Keyboard="Telephone" />
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+            <Grid ColumnDefinitions="*,*"
+                  ColumnSpacing="12">
+                <Border Style="{StaticResource FormFieldBorderStyle}">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Saúde da conta"
+                               Style="{StaticResource FieldLabelStyle}" />
+                        <Picker x:Name="HealthPicker"
+                                Title="Selecione" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Grid.Column="1"
+                        Style="{StaticResource FormFieldBorderStyle}">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Receita mensal"
+                               Style="{StaticResource FieldLabelStyle}" />
+                        <Entry x:Name="RevenueEntry"
+                               Placeholder="0,00"
+                               Keyboard="Numeric" />
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+            <Grid ColumnDefinitions="*,*"
+                  ColumnSpacing="12">
+                <Border Style="{StaticResource FormFieldBorderStyle}">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Última interação"
+                               Style="{StaticResource FieldLabelStyle}" />
+                        <DatePicker x:Name="LastInteractionDatePicker" />
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+            <Border Style="{StaticResource FormFieldBorderStyle}">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Observações"
+                           Style="{StaticResource FieldLabelStyle}" />
+                    <Editor x:Name="NotesEditor"
+                            AutoSize="TextChanges"
+                            Placeholder="Contexto da conta, risco percebido ou plano em andamento." />
+                </VerticalStackLayout>
+            </Border>
+
+            <Label x:Name="StatusLabel"
+                   IsVisible="False"
+                   Style="{StaticResource StatusTextStyle}" />
+
+            <Grid ColumnDefinitions="*,*"
+                  ColumnSpacing="12">
+                <Button Text="Cancelar"
+                        Style="{StaticResource SecondaryActionButtonStyle}"
+                        Clicked="OnCancelClicked" />
+                <Button Grid.Column="1"
+                        x:Name="SaveButton"
+                        Text="Salvar cliente"
+                        Style="{StaticResource PrimaryActionButtonStyle}"
+                        Clicked="OnSaveClicked" />
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -48,8 +48,12 @@ public static class MauiProgram
         builder.Services.AddTransient<LoginPage>();
         builder.Services.AddTransient<HomePage>();
         builder.Services.AddTransient<PipelinePage>();
+        builder.Services.AddTransient<CreateLeadPage>();
+        builder.Services.AddTransient<CreateCustomerPage>();
+        builder.Services.AddTransient<CreateOpportunityPage>();
         builder.Services.AddTransient<TasksPage>();
         builder.Services.AddTransient<CreateTaskPage>();
+        builder.Services.AddTransient<EditTaskPage>();
         builder.Services.AddTransient<InteractionsPage>();
         builder.Services.AddTransient<CreateInteractionPage>();
         builder.Services.AddTransient<ProfilePage>();

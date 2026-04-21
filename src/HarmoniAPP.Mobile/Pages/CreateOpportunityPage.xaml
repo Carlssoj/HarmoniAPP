@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HarmoniAPP.Mobile.Pages.CreateOpportunityPage"
+             SafeAreaEdges="All"
+             Title="Nova oportunidade">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20,16,20,32"
+                             Spacing="14">
+            <Label Text="Estruture a oportunidade com valor, etapa e previsão de fechamento."
+                   Style="{StaticResource SecondaryTextStyle}" />
+
+            <Border Style="{StaticResource FormFieldBorderStyle}">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Oportunidade"
+                           Style="{StaticResource FieldLabelStyle}" />
+                    <Entry x:Name="TitleEntry"
+                           Placeholder="Ex: Expansão da conta Solaris" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Style="{StaticResource FormFieldBorderStyle}">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Conta"
+                           Style="{StaticResource FieldLabelStyle}" />
+                    <Entry x:Name="AccountEntry"
+                           Placeholder="Ex: Solaris Energia" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Grid ColumnDefinitions="*,*"
+                  ColumnSpacing="12">
+                <Border Style="{StaticResource FormFieldBorderStyle}">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Etapa"
+                               Style="{StaticResource FieldLabelStyle}" />
+                        <Picker x:Name="StagePicker"
+                                Title="Selecione" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Grid.Column="1"
+                        Style="{StaticResource FormFieldBorderStyle}">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Fechamento previsto"
+                               Style="{StaticResource FieldLabelStyle}" />
+                        <DatePicker x:Name="ExpectedCloseDatePicker" />
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+            <Grid ColumnDefinitions="*,*"
+                  ColumnSpacing="12">
+                <Border Style="{StaticResource FormFieldBorderStyle}">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Valor"
+                               Style="{StaticResource FieldLabelStyle}" />
+                        <Entry x:Name="AmountEntry"
+                               Placeholder="0,00"
+                               Keyboard="Numeric" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Grid.Column="1"
+                        Style="{StaticResource FormFieldBorderStyle}">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Probabilidade (%)"
+                               Style="{StaticResource FieldLabelStyle}" />
+                        <Entry x:Name="ProbabilityEntry"
+                               Placeholder="30"
+                               Keyboard="Numeric" />
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+            <Border Style="{StaticResource FormFieldBorderStyle}">
+                <Grid ColumnDefinitions="*,Auto"
+                      ColumnSpacing="12">
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Conta estratégica"
+                               Style="{StaticResource FieldLabelStyle}" />
+                        <Label Text="Marque se a oportunidade pede acompanhamento prioritário."
+                               Style="{StaticResource SecondaryTextStyle}" />
+                    </VerticalStackLayout>
+                    <Switch Grid.Column="1"
+                            x:Name="StrategicSwitch"
+                            HorizontalOptions="End"
+                            VerticalOptions="Center" />
+                </Grid>
+            </Border>
+
+            <Border Style="{StaticResource FormFieldBorderStyle}">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Resumo"
+                           Style="{StaticResource FieldLabelStyle}" />
+                    <Editor x:Name="SummaryEditor"
+                            AutoSize="TextChanges"
+                            Placeholder="Descreva escopo, contexto e próximos passos." />
+                </VerticalStackLayout>
+            </Border>
+
+            <Label x:Name="StatusLabel"
+                   IsVisible="False"
+                   Style="{StaticResource StatusTextStyle}" />
+
+            <Grid ColumnDefinitions="*,*"
+                  ColumnSpacing="12">
+                <Button Text="Cancelar"
+                        Style="{StaticResource SecondaryActionButtonStyle}"
+                        Clicked="OnCancelClicked" />
+                <Button Grid.Column="1"
+                        x:Name="SaveButton"
+                        Text="Salvar oportunidade"
+                        Style="{StaticResource PrimaryActionButtonStyle}"
+                        Clicked="OnSaveClicked" />
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

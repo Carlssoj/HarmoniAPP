@@ -4,8 +4,8 @@ Aplicativo mobile do ecossistema Harmoni, construído com `.NET MAUI` e integrad
 
 ## Versão atual
 
-- `v0.2.1`
-- Tag de release: `v0.2.1`
+- `v0.3.0`
+- Tag de release: `v0.3.0`
 
 ## Fase 2 entregue
 
@@ -31,6 +31,21 @@ O app agora possui:
 - agenda com listagem de tarefas e cadastro de nova tarefa
 - interações com histórico e cadastro de nova interação
 - perfil do usuário autenticado com contexto de acesso
+- renovação automática de sessão com `refresh token`
+- cadastros mobile para:
+  - leads
+  - clientes
+  - oportunidades
+- agenda com:
+  - filtros por situação e prioridade
+  - edição de tarefa
+  - conclusão de tarefa
+- pipeline com:
+  - busca textual
+  - filtro por status, saúde ou etapa
+- interações com:
+  - busca textual
+  - filtro por tipo
 - identidade visual própria do Harmoni no app:
   - paleta terrosa suave
   - app icon e splash personalizados
@@ -74,6 +89,7 @@ Para dispositivos fora do ambiente local, a API precisa estar acessível em um h
 ## Arquitetura mobile atual
 
 - `AuthApiClient`: login, sessão e usuário autenticado
+- `refresh token` com renovação automática após `401`
 - `DashboardApiClient`: resumo do cockpit
 - `LeadsApiClient`
 - `CustomersApiClient`
@@ -84,9 +100,8 @@ Para dispositivos fora do ambiente local, a API precisa estar acessível em um h
 
 ## Próximos passos recomendados
 
-- adicionar busca e filtros nas listas
 - permitir configuração dinâmica da URL da API
-- adicionar edição e conclusão de tarefas
-- adicionar criação de leads, clientes e oportunidades pelo app
+- adicionar edição de interações e oportunidades pelo app
+- permitir ações rápidas nos cards sem abrir modal
 - retomar a validação iOS quando a trilha mobile pedir isso novamente
 - preparar distribuição `TestFlight`

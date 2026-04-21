@@ -7,7 +7,12 @@
              x:Class="HarmoniAPP.Mobile.Pages.PipelinePage"
              SafeAreaEdges="All">
 
-    <Grid RowDefinitions="Auto,Auto,Auto,*"
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Novo"
+                     Clicked="OnCreateRecordClicked" />
+    </ContentPage.ToolbarItems>
+
+    <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,*"
           Padding="20,8,20,20"
           RowSpacing="14">
         <VerticalStackLayout Spacing="6">
@@ -36,12 +41,32 @@
                     Clicked="OnShowOpportunitiesClicked" />
         </Grid>
 
-        <Label Grid.Row="2"
+        <SearchBar Grid.Row="2"
+                   x:Name="PipelineSearchBar"
+                   Placeholder="Busque por nome, conta, origem ou responsável"
+                   SearchButtonPressed="OnSearchSubmitted"
+                   TextChanged="OnSearchTextChanged" />
+
+        <Grid Grid.Row="3">
+            <Picker x:Name="LeadStatusPicker"
+                    Title="Status do lead"
+                    SelectedIndexChanged="OnLeadStatusChanged" />
+            <Picker x:Name="CustomerHealthPicker"
+                    Title="Saúde da conta"
+                    IsVisible="False"
+                    SelectedIndexChanged="OnCustomerHealthChanged" />
+            <Picker x:Name="OpportunityStagePicker"
+                    Title="Etapa da oportunidade"
+                    IsVisible="False"
+                    SelectedIndexChanged="OnOpportunityStageChanged" />
+        </Grid>
+
+        <Label Grid.Row="4"
                x:Name="StatusLabel"
                IsVisible="False"
                Style="{StaticResource StatusTextStyle}" />
 
-        <RefreshView Grid.Row="3"
+        <RefreshView Grid.Row="5"
                      x:Name="PipelineRefreshView"
                      Refreshing="OnRefreshRequested">
             <Grid>

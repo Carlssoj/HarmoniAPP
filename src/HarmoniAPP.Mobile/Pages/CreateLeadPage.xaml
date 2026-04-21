@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HarmoniAPP.Mobile.Pages.CreateLeadPage"
+             SafeAreaEdges="All"
+             Title="Novo lead">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20,16,20,32"
+                             Spacing="14">
+            <Label Text="Cadastre um lead e já coloque o próximo passo do pipeline em movimento."
+                   Style="{StaticResource SecondaryTextStyle}" />
+
+            <Border Style="{StaticResource FormFieldBorderStyle}">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Nome"
+                           Style="{StaticResource FieldLabelStyle}" />
+                    <Entry x:Name="NameEntry"
+                           Placeholder="Ex: Mariana Lopes" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Style="{StaticResource FormFieldBorderStyle}">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Empresa"
+                           Style="{StaticResource FieldLabelStyle}" />
+                    <Entry x:Name="CompanyEntry"
+                           Placeholder="Ex: Solaris Energia" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Grid ColumnDefinitions="*,*"
+                  ColumnSpacing="12">
+                <Border Style="{StaticResource FormFieldBorderStyle}">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="E-mail"
+                               Style="{StaticResource FieldLabelStyle}" />
+                        <Entry x:Name="EmailEntry"
+                               Placeholder="contato@empresa.com"
+                               Keyboard="Email" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Grid.Column="1"
+                        Style="{StaticResource FormFieldBorderStyle}">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Telefone"
+                               Style="{StaticResource FieldLabelStyle}" />
+                        <Entry x:Name="PhoneEntry"
+                               Placeholder="(11) 99999-0000"
+                               Keyboard="Telephone" />
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+            <Grid ColumnDefinitions="*,*"
+                  ColumnSpacing="12">
+                <Border Style="{StaticResource FormFieldBorderStyle}">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Status"
+                               Style="{StaticResource FieldLabelStyle}" />
+                        <Picker x:Name="StatusPicker"
+                                Title="Selecione" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Grid.Column="1"
+                        Style="{StaticResource FormFieldBorderStyle}">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Valor potencial"
+                               Style="{StaticResource FieldLabelStyle}" />
+                        <Entry x:Name="PotentialValueEntry"
+                               Placeholder="0,00"
+                               Keyboard="Numeric" />
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+            <Grid ColumnDefinitions="*,*"
+                  ColumnSpacing="12">
+                <Border Style="{StaticResource FormFieldBorderStyle}">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Origem"
+                               Style="{StaticResource FieldLabelStyle}" />
+                        <Entry x:Name="SourceEntry"
+                               Placeholder="Ex: Indicação, evento, inbound" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Grid.Column="1"
+                        Style="{StaticResource FormFieldBorderStyle}">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Próximo follow-up"
+                               Style="{StaticResource FieldLabelStyle}" />
+                        <DatePicker x:Name="FollowUpDatePicker" />
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+            <Border Style="{StaticResource FormFieldBorderStyle}">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Observações"
+                           Style="{StaticResource FieldLabelStyle}" />
+                    <Editor x:Name="NotesEditor"
+                            AutoSize="TextChanges"
+                            Placeholder="Contexto, objeções ou próximos passos." />
+                </VerticalStackLayout>
+            </Border>
+
+            <Label x:Name="StatusLabel"
+                   IsVisible="False"
+                   Style="{StaticResource StatusTextStyle}" />
+
+            <Grid ColumnDefinitions="*,*"
+                  ColumnSpacing="12">
+                <Button Text="Cancelar"
+                        Style="{StaticResource SecondaryActionButtonStyle}"
+                        Clicked="OnCancelClicked" />
+                <Button Grid.Column="1"
+                        x:Name="SaveButton"
+                        Text="Salvar lead"
+                        Style="{StaticResource PrimaryActionButtonStyle}"
+                        Clicked="OnSaveClicked" />
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -10,7 +10,7 @@
                      Clicked="OnCreateInteractionClicked" />
     </ContentPage.ToolbarItems>
 
-    <Grid RowDefinitions="Auto,Auto,*"
+    <Grid RowDefinitions="Auto,Auto,Auto,Auto,*"
           Padding="20,8,20,20"
           RowSpacing="14">
         <VerticalStackLayout Spacing="6">
@@ -36,7 +36,18 @@
             </VerticalStackLayout>
         </Border>
 
-        <RefreshView Grid.Row="2"
+        <SearchBar Grid.Row="2"
+                   x:Name="InteractionSearchBar"
+                   Placeholder="Busque por assunto, registro ou resumo"
+                   SearchButtonPressed="OnSearchSubmitted"
+                   TextChanged="OnSearchTextChanged" />
+
+        <Picker Grid.Row="3"
+                x:Name="InteractionTypePicker"
+                Title="Tipo de interação"
+                SelectedIndexChanged="OnTypeChanged" />
+
+        <RefreshView Grid.Row="4"
                      x:Name="InteractionsRefreshView"
                      Refreshing="OnRefreshRequested">
             <CollectionView x:Name="InteractionsCollectionView"

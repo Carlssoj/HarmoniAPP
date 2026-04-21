@@ -5,6 +5,7 @@
 
 # dotenv files
 .env
+.artifacts/
 
 # User-specific files
 *.rsuser

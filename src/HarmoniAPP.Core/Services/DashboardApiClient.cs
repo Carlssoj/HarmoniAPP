@@ -4,8 +4,8 @@ namespace HarmoniAPP.Core.Services;
 
 public sealed class DashboardApiClient : AuthorizedApiClient
 {
-    public DashboardApiClient(HttpClient httpClient, ITokenStore tokenStore)
-        : base(httpClient, tokenStore)
+    public DashboardApiClient(AuthApiClient authApiClient, HttpClient httpClient, ITokenStore tokenStore)
+        : base(authApiClient, httpClient, tokenStore)
     {
     }
 
