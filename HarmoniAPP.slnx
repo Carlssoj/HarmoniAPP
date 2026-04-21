@@ -1,0 +1,6 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/HarmoniAPP.Core/HarmoniAPP.Core.csproj" />
+    <Project Path="src/HarmoniAPP.Mobile/HarmoniAPP.Mobile.csproj" />
+  </Folder>
+</Solution>

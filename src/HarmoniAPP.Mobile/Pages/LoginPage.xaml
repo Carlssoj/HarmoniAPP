@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HarmoniAPP.Mobile.Pages.LoginPage"
+             Title="Entrar">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="18">
+            <Label Text="HarmoniAPP"
+                   FontSize="28"
+                   FontAttributes="Bold" />
+
+            <Label Text="Login mobile integrado ao HarmoniCRM"
+                   FontSize="16"
+                   TextColor="#6D5B52" />
+
+            <Entry x:Name="LoginEntry"
+                   Placeholder="Usuário ou e-mail"
+                   Keyboard="Email" />
+
+            <Entry x:Name="PasswordEntry"
+                   Placeholder="Senha"
+                   IsPassword="True" />
+
+            <Label x:Name="StatusLabel"
+                   TextColor="#9B5A3C"
+                   FontSize="13" />
+
+            <Button Text="Entrar"
+                    Clicked="OnLoginClicked" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
