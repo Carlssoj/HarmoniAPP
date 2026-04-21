@@ -11,7 +11,7 @@
             <VerticalStackLayout Spacing="10">
                 <Label Text="Harmoni"
                        Style="{StaticResource EyebrowStyle}" />
-                <Label Text="Sua operação comercial, pronta para a rotina do iPhone."
+                <Label Text="Sua operação comercial, pronta para o dia a dia do time."
                        Style="{StaticResource HeroTitleStyle}" />
                 <Label Text="Entre com seu usuário do CRM para acessar o resumo, o pipeline, a agenda e as interações."
                        Style="{StaticResource SecondaryTextStyle}" />
@@ -50,7 +50,7 @@
                         Style="{StaticResource PrimaryActionButtonStyle}"
                         Clicked="OnLoginClicked" />
 
-                <Label Text="Foco visual otimizado para iPhone 13 em orientação retrato."
+                <Label Text="Experiência mobile do Harmoni para acompanhar pipeline, agenda e interações."
                        Style="{StaticResource SecondaryTextStyle}" />
             </VerticalStackLayout>
         </ScrollView>

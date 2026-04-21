@@ -42,7 +42,7 @@
                            Style="{StaticResource CardCaptionStyle}" />
                     <Label x:Name="AppVersionLabel"
                            Style="{StaticResource CardTitleStyle}" />
-                    <Label Text="Layout priorizado para iPhone 13 em orientação retrato."
+                    <Label Text="Experiência pensada para o uso mobile do Harmoni."
                            Style="{StaticResource SecondaryTextStyle}" />
                 </VerticalStackLayout>
             </Border>
@@ -53,7 +53,7 @@
                            Style="{StaticResource CardCaptionStyle}" />
                     <Label x:Name="ApiBaseUrlLabel"
                            Style="{StaticResource CardTitleStyle}" />
-                    <Label Text="Para iPhone físico, a API precisa estar publicada em um host HTTPS acessível pelo aparelho."
+                    <Label Text="Para outros dispositivos e redes, a API precisa estar publicada em um host HTTPS acessível."
                            Style="{StaticResource SecondaryTextStyle}" />
                 </VerticalStackLayout>
             </Border>

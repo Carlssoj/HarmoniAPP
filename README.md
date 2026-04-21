@@ -4,12 +4,12 @@ Aplicativo mobile do ecossistema Harmoni, construído com `.NET MAUI` e integrad
 
 ## Versão atual
 
-- `v0.2.0`
-- Tag de release: `v0.2.0`
+- `v0.2.1`
+- Tag de release: `v0.2.1`
 
 ## Fase 2 entregue
 
-Esta fase prioriza a experiência mobile com foco em `iPhone 13`, em orientação retrato, sem alterar a aplicação web existente.
+Esta fase prioriza a experiência do `HarmoniAPP` como aplicativo mobile integrado à `HarmoniAPI`, sem alterar a aplicação web existente.
 
 O app agora possui:
 
@@ -34,7 +34,7 @@ O app agora possui:
 - identidade visual própria do Harmoni no app:
   - paleta terrosa suave
   - app icon e splash personalizados
-  - layout mais compacto para largura típica do iPhone 13
+  - interface mobile pensada para uso diário da operação comercial
 
 ## Estrutura
 
@@ -61,14 +61,14 @@ Hoje o app usa por padrão:
 - iOS Simulator: `https://localhost:7174/`
 - Android Emulator: `https://10.0.2.2:7174/`
 
-Para `iPhone físico`, a API precisa estar acessível em um host `HTTPS` que o aparelho alcance pela rede. Em um próximo passo, podemos externalizar isso para configuração dinâmica no próprio app.
+Para dispositivos fora do ambiente local, a API precisa estar acessível em um host `HTTPS` alcançável pela rede. Em um próximo passo, podemos externalizar isso para configuração dinâmica no próprio app.
 
 ## Validação realizada
 
 - `dotnet build .\src\HarmoniAPP.Mobile\HarmoniAPP.Mobile.csproj -f net10.0-windows10.0.19041.0`
   - sucesso, sem erros e sem avisos
 - target `iOS`
-  - o código foi preparado para `iPhone-only` e retrato
+  - o projeto segue disponível para evolução futura, sem foco específico em um único aparelho
   - a validação local ainda ficou bloqueada por lock de diretórios intermediários `obj` dentro do ambiente atual
 
 ## Arquitetura mobile atual
@@ -88,5 +88,5 @@ Para `iPhone físico`, a API precisa estar acessível em um host `HTTPS` que o a
 - permitir configuração dinâmica da URL da API
 - adicionar edição e conclusão de tarefas
 - adicionar criação de leads, clientes e oportunidades pelo app
-- validar o target iOS diretamente em simulador `iPhone 13`
+- retomar a validação iOS quando a trilha mobile pedir isso novamente
 - preparar distribuição `TestFlight`

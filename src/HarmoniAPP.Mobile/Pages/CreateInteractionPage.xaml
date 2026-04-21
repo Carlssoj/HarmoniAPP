@@ -8,7 +8,7 @@
     <ScrollView>
         <VerticalStackLayout Padding="20,16,20,32"
                              Spacing="14">
-            <Label Text="Registre um contato, reunião ou marco importante sem sair do iPhone."
+            <Label Text="Registre um contato, reunião ou marco importante sem sair do fluxo do app."
                    Style="{StaticResource SecondaryTextStyle}" />
 
             <Border Style="{StaticResource FormFieldBorderStyle}">

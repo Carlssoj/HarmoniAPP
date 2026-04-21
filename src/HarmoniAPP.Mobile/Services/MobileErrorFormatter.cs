@@ -14,7 +14,7 @@ public static class MobileErrorFormatter
             HttpRequestException { StatusCode: HttpStatusCode.BadRequest } =>
                 "Alguns dados enviados não foram aceitos pela API.",
             HttpRequestException =>
-                "Não foi possível falar com a API do Harmoni. Verifique se ela está no ar e acessível para o iPhone.",
+                "Não foi possível falar com a API do Harmoni. Verifique se ela está no ar e acessível para o app.",
             InvalidOperationException =>
                 exception.Message,
             _ =>
