@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HarmoniAPP.Mobile.Pages.CreateTaskPage"
+             SafeAreaEdges="All"
+             Title="Nova tarefa">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20,16,20,32"
+                             Spacing="14">
+            <Label Text="Adicione uma tarefa rápida para manter a operação em movimento."
+                   Style="{StaticResource SecondaryTextStyle}" />
+
+            <Border Style="{StaticResource FormFieldBorderStyle}">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Título"
+                           Style="{StaticResource FieldLabelStyle}" />
+                    <Entry x:Name="TitleEntry"
+                           Placeholder="Ex: Revisar proposta enterprise" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Style="{StaticResource FormFieldBorderStyle}">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Relacionado a"
+                           Style="{StaticResource FieldLabelStyle}" />
+                    <Entry x:Name="RelatedToEntry"
+                           Placeholder="Conta, cliente ou atividade" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Style="{StaticResource FormFieldBorderStyle}">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Prioridade"
+                           Style="{StaticResource FieldLabelStyle}" />
+                    <Picker x:Name="PriorityPicker"
+                            Title="Selecione a prioridade" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Style="{StaticResource FormFieldBorderStyle}">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Data de vencimento"
+                           Style="{StaticResource FieldLabelStyle}" />
+                    <DatePicker x:Name="DueDatePicker" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Style="{StaticResource FormFieldBorderStyle}">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Observações"
+                           Style="{StaticResource FieldLabelStyle}" />
+                    <Editor x:Name="NotesEditor"
+                            AutoSize="TextChanges"
+                            Placeholder="O que precisa acontecer nesta tarefa?" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Label x:Name="StatusLabel"
+                   IsVisible="False"
+                   Style="{StaticResource StatusTextStyle}" />
+
+            <Grid ColumnDefinitions="*,*"
+                  ColumnSpacing="12">
+                <Button Text="Cancelar"
+                        Style="{StaticResource SecondaryActionButtonStyle}"
+                        Clicked="OnCancelClicked" />
+                <Button Grid.Column="1"
+                        x:Name="SaveButton"
+                        Text="Salvar tarefa"
+                        Style="{StaticResource PrimaryActionButtonStyle}"
+                        Clicked="OnSaveClicked" />
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

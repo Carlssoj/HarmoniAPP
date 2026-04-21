@@ -36,10 +36,24 @@ public static class MauiProgram
             };
         });
         builder.Services.AddSingleton<ITokenStore, SecureTokenStore>();
+        builder.Services.AddSingleton<AppNavigator>();
         builder.Services.AddSingleton<AuthApiClient>();
         builder.Services.AddSingleton<DashboardApiClient>();
+        builder.Services.AddSingleton<LeadsApiClient>();
+        builder.Services.AddSingleton<CustomersApiClient>();
+        builder.Services.AddSingleton<OpportunitiesApiClient>();
+        builder.Services.AddSingleton<TasksApiClient>();
+        builder.Services.AddSingleton<InteractionsApiClient>();
+        builder.Services.AddTransient<LaunchPage>();
         builder.Services.AddTransient<LoginPage>();
-        builder.Services.AddTransient<DashboardPage>();
+        builder.Services.AddTransient<HomePage>();
+        builder.Services.AddTransient<PipelinePage>();
+        builder.Services.AddTransient<TasksPage>();
+        builder.Services.AddTransient<CreateTaskPage>();
+        builder.Services.AddTransient<InteractionsPage>();
+        builder.Services.AddTransient<CreateInteractionPage>();
+        builder.Services.AddTransient<ProfilePage>();
+        builder.Services.AddTransient<AppTabPage>();
 
 #if DEBUG
         builder.Logging.AddDebug();

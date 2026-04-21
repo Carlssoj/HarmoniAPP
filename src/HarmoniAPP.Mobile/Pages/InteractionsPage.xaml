@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:interactions="clr-namespace:HarmoniAPP.Core.Models.Interactions;assembly=HarmoniAPP.Core"
+             x:Class="HarmoniAPP.Mobile.Pages.InteractionsPage"
+             SafeAreaEdges="All">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Nova"
+                     Clicked="OnCreateInteractionClicked" />
+    </ContentPage.ToolbarItems>
+
+    <Grid RowDefinitions="Auto,Auto,*"
+          Padding="20,8,20,20"
+          RowSpacing="14">
+        <VerticalStackLayout Spacing="6">
+            <Label Text="Interações"
+                   Style="{StaticResource EyebrowStyle}" />
+            <Label Text="Mantenha o histórico do relacionamento atualizado em tempo real."
+                   Style="{StaticResource PageTitleStyle}" />
+            <Label x:Name="StatusLabel"
+                   IsVisible="False"
+                   Style="{StaticResource StatusTextStyle}" />
+        </VerticalStackLayout>
+
+        <Border Grid.Row="1"
+                Style="{StaticResource CardBorderStyle}">
+            <VerticalStackLayout Spacing="6">
+                <Label Text="Registro recente"
+                       Style="{StaticResource CardCaptionStyle}" />
+                <Label x:Name="RecentInteractionsValueLabel"
+                       Text="0"
+                       Style="{StaticResource HeroMetricStyle}" />
+                <Label Text="interação(ões) carregadas neste contexto."
+                       Style="{StaticResource SecondaryTextStyle}" />
+            </VerticalStackLayout>
+        </Border>
+
+        <RefreshView Grid.Row="2"
+                     x:Name="InteractionsRefreshView"
+                     Refreshing="OnRefreshRequested">
+            <CollectionView x:Name="InteractionsCollectionView"
+                            SelectionMode="None">
+                <CollectionView.EmptyView>
+                    <Label Text="Nenhuma interação carregada para este contexto."
+                           Style="{StaticResource EmptyStateStyle}" />
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="interactions:InteractionItemResponse">
+                        <Border Style="{StaticResource CardBorderStyle}"
+                                Margin="0,0,0,12">
+                            <VerticalStackLayout Spacing="10">
+                                <Grid ColumnDefinitions="*,Auto"
+                                      ColumnSpacing="12">
+                                    <VerticalStackLayout Spacing="2">
+                                        <Label Text="{Binding Assunto}"
+                                               Style="{StaticResource CardTitleStyle}" />
+                                        <Label Text="{Binding RelacionadoA}"
+                                               Style="{StaticResource SecondaryTextStyle}" />
+                                    </VerticalStackLayout>
+
+                                    <Border Padding="10,6"
+                                            BackgroundColor="{StaticResource AccentSoft}"
+                                            StrokeThickness="0"
+                                            HorizontalOptions="End">
+                                        <Label Text="{Binding Tipo}"
+                                               Style="{StaticResource ChipValueStyle}" />
+                                    </Border>
+                                </Grid>
+
+                                <Grid ColumnDefinitions="*,Auto"
+                                      ColumnSpacing="12">
+                                    <Label Text="{Binding TipoRegistro}"
+                                           Style="{StaticResource SecondaryTextStyle}" />
+                                    <Label Grid.Column="1"
+                                           Text="{Binding OcorreuEm, StringFormat='{}{0:dd MMM}'}"
+                                           Style="{StaticResource SecondaryTextStyle}"
+                                           HorizontalTextAlignment="End" />
+                                </Grid>
+
+                                <Label Text="{Binding Resumo}"
+                                       Style="{StaticResource SecondaryTextStyle}" />
+
+                                <Label Text="{Binding ProximaAcao, StringFormat='Próxima ação: {0}'}"
+                                       IsVisible="{Binding ProximaAcao, Converter={x:Null}}"
+                                       Style="{StaticResource StatusTextStyle}" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+    </Grid>
+</ContentPage>

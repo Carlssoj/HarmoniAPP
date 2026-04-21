@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HarmoniAPP.Mobile.Pages.HomePage"
+             SafeAreaEdges="All">
+
+    <RefreshView x:Name="DashboardRefreshView"
+                 Refreshing="OnRefreshRequested">
+        <ScrollView>
+            <VerticalStackLayout Padding="20,8,20,32"
+                                 Spacing="16">
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="Cockpit mobile"
+                           Style="{StaticResource EyebrowStyle}" />
+                    <Label x:Name="GreetingLabel"
+                           Text="Seu resumo comercial"
+                           Style="{StaticResource PageTitleStyle}" />
+                    <Label x:Name="ProfileLabel"
+                           Text="Carregando contexto do usuário..."
+                           Style="{StaticResource SecondaryTextStyle}" />
+                </VerticalStackLayout>
+
+                <Label x:Name="StatusLabel"
+                       IsVisible="False"
+                       Style="{StaticResource StatusTextStyle}" />
+
+                <Border Style="{StaticResource HeroCardStyle}">
+                    <VerticalStackLayout Spacing="18">
+                        <Grid ColumnDefinitions="*,Auto"
+                              RowDefinitions="Auto,Auto"
+                              ColumnSpacing="12"
+                              RowSpacing="10">
+                            <VerticalStackLayout Spacing="4">
+                                <Label Text="Pipeline aberto"
+                                       Style="{StaticResource CardCaptionStyle}" />
+                                <Label x:Name="PipelineValueLabel"
+                                       Text="R$ 0"
+                                       Style="{StaticResource HeroMetricStyle}" />
+                            </VerticalStackLayout>
+
+                            <Border Padding="12,8"
+                                    BackgroundColor="{StaticResource AccentSoft}"
+                                    StrokeThickness="0"
+                                    HorizontalOptions="End">
+                                <Label x:Name="MonthlyRevenueValueLabel"
+                                       Text="R$ 0"
+                                       Style="{StaticResource ChipValueStyle}" />
+                            </Border>
+
+                            <Label Grid.Row="1"
+                                   Grid.ColumnSpan="2"
+                                   x:Name="SummaryLabel"
+                                   Text="Dados principais da operação em um único olhar."
+                                   Style="{StaticResource SecondaryTextStyle}" />
+                        </Grid>
+
+                        <Grid ColumnDefinitions="*,*,*"
+                              ColumnSpacing="10">
+                            <Button Text="Pipeline"
+                                    Style="{StaticResource PrimaryActionButtonStyle}"
+                                    Clicked="OnOpenPipelineClicked" />
+                            <Button Grid.Column="1"
+                                    Text="Agenda"
+                                    Style="{StaticResource SecondaryActionButtonStyle}"
+                                    Clicked="OnOpenTasksClicked" />
+                            <Button Grid.Column="2"
+                                    Text="Interações"
+                                    Style="{StaticResource SecondaryActionButtonStyle}"
+                                    Clicked="OnOpenInteractionsClicked" />
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Grid ColumnDefinitions="*,*"
+                      RowDefinitions="Auto,Auto,Auto"
+                      ColumnSpacing="12"
+                      RowSpacing="12">
+                    <Border Grid.Row="0"
+                            Grid.Column="0"
+                            Style="{StaticResource CardBorderStyle}">
+                        <VerticalStackLayout Spacing="6">
+                            <Label Text="Leads"
+                                   Style="{StaticResource CardCaptionStyle}" />
+                            <Label x:Name="LeadsValueLabel"
+                                   Text="0"
+                                   Style="{StaticResource MetricValueStyle}" />
+                            <Label Text="Em acompanhamento"
+                                   Style="{StaticResource SecondaryTextStyle}" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border Grid.Row="0"
+                            Grid.Column="1"
+                            Style="{StaticResource CardBorderStyle}">
+                        <VerticalStackLayout Spacing="6">
+                            <Label Text="Clientes"
+                                   Style="{StaticResource CardCaptionStyle}" />
+                            <Label x:Name="CustomersValueLabel"
+                                   Text="0"
+                                   Style="{StaticResource MetricValueStyle}" />
+                            <Label Text="Base ativa"
+                                   Style="{StaticResource SecondaryTextStyle}" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border Grid.Row="1"
+                            Grid.Column="0"
+                            Style="{StaticResource CardBorderStyle}">
+                        <VerticalStackLayout Spacing="6">
+                            <Label Text="Oportunidades"
+                                   Style="{StaticResource CardCaptionStyle}" />
+                            <Label x:Name="OpportunitiesValueLabel"
+                                   Text="0"
+                                   Style="{StaticResource MetricValueStyle}" />
+                            <Label Text="Em aberto"
+                                   Style="{StaticResource SecondaryTextStyle}" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border Grid.Row="1"
+                            Grid.Column="1"
+                            Style="{StaticResource CardBorderStyle}">
+                        <VerticalStackLayout Spacing="6">
+                            <Label Text="Tarefas"
+                                   Style="{StaticResource CardCaptionStyle}" />
+                            <Label x:Name="TasksValueLabel"
+                                   Text="0"
+                                   Style="{StaticResource MetricValueStyle}" />
+                            <Label Text="Pendentes"
+                                   Style="{StaticResource SecondaryTextStyle}" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border Grid.Row="2"
+                            Grid.ColumnSpan="2"
+                            Style="{StaticResource CardBorderStyle}">
+                        <VerticalStackLayout Spacing="6">
+                            <Label Text="Interações recentes"
+                                   Style="{StaticResource CardCaptionStyle}" />
+                            <Label x:Name="InteractionsValueLabel"
+                                   Text="0"
+                                   Style="{StaticResource MetricValueStyle}" />
+                            <Label Text="Últimos 7 dias"
+                                   Style="{StaticResource SecondaryTextStyle}" />
+                        </VerticalStackLayout>
+                    </Border>
+                </Grid>
+            </VerticalStackLayout>
+        </ScrollView>
+    </RefreshView>
+</ContentPage>

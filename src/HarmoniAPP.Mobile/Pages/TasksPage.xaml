@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:tasks="clr-namespace:HarmoniAPP.Core.Models.Tasks;assembly=HarmoniAPP.Core"
+             x:Class="HarmoniAPP.Mobile.Pages.TasksPage"
+             SafeAreaEdges="All">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Nova"
+                     Clicked="OnCreateTaskClicked" />
+    </ContentPage.ToolbarItems>
+
+    <Grid RowDefinitions="Auto,Auto,Auto,*"
+          Padding="20,8,20,20"
+          RowSpacing="14">
+        <VerticalStackLayout Spacing="6">
+            <Label Text="Agenda do time"
+                   Style="{StaticResource EyebrowStyle}" />
+            <Label Text="Priorize entregas e acompanhe vencimentos sem sair do celular."
+                   Style="{StaticResource PageTitleStyle}" />
+        </VerticalStackLayout>
+
+        <Border Grid.Row="1"
+                Style="{StaticResource CardBorderStyle}">
+            <Grid ColumnDefinitions="Auto,*"
+                  ColumnSpacing="14">
+                <Border Padding="12"
+                        BackgroundColor="{StaticResource AccentSoft}"
+                        StrokeThickness="0"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center">
+                    <Label Text="Pendentes"
+                           Style="{StaticResource ChipValueStyle}" />
+                </Border>
+
+                <VerticalStackLayout Grid.Column="1"
+                                     Spacing="2">
+                    <Label x:Name="PendingTasksValueLabel"
+                           Text="0"
+                           Style="{StaticResource HeroMetricStyle}" />
+                    <Label Text="tarefas abertas na sua agenda."
+                           Style="{StaticResource SecondaryTextStyle}" />
+                </VerticalStackLayout>
+            </Grid>
+        </Border>
+
+        <Label Grid.Row="2"
+               x:Name="StatusLabel"
+               IsVisible="False"
+               Style="{StaticResource StatusTextStyle}" />
+
+        <RefreshView Grid.Row="3"
+                     x:Name="TasksRefreshView"
+                     Refreshing="OnRefreshRequested">
+            <CollectionView x:Name="TasksCollectionView"
+                            SelectionMode="None">
+                <CollectionView.EmptyView>
+                    <Label Text="Nenhuma tarefa carregada para o seu contexto."
+                           Style="{StaticResource EmptyStateStyle}" />
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="tasks:TaskItemResponse">
+                        <Border Style="{StaticResource CardBorderStyle}"
+                                Margin="0,0,0,12">
+                            <VerticalStackLayout Spacing="10">
+                                <Grid ColumnDefinitions="*,Auto"
+                                      ColumnSpacing="12">
+                                    <VerticalStackLayout Spacing="2">
+                                        <Label Text="{Binding Titulo}"
+                                               Style="{StaticResource CardTitleStyle}" />
+                                        <Label Text="{Binding RelacionadoA}"
+                                               Style="{StaticResource SecondaryTextStyle}" />
+                                    </VerticalStackLayout>
+
+                                    <Border Padding="10,6"
+                                            BackgroundColor="{StaticResource AccentSoft}"
+                                            StrokeThickness="0"
+                                            HorizontalOptions="End">
+                                        <Label Text="{Binding Prioridade}"
+                                               Style="{StaticResource ChipValueStyle}" />
+                                    </Border>
+                                </Grid>
+
+                                <Grid ColumnDefinitions="*,*"
+                                      ColumnSpacing="12">
+                                    <Label Text="{Binding Responsavel, StringFormat='Responsável: {0}'}"
+                                           Style="{StaticResource SecondaryTextStyle}" />
+                                    <Label Grid.Column="1"
+                                           Text="{Binding DataVencimento, StringFormat='Vence em {0:dd MMM}'}"
+                                           Style="{StaticResource SecondaryTextStyle}"
+                                           HorizontalTextAlignment="End" />
+                                </Grid>
+
+                                <Label Text="{Binding Observacoes}"
+                                       IsVisible="{Binding Observacoes, Converter={x:Null}}"
+                                       Style="{StaticResource SecondaryTextStyle}" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+    </Grid>
+</ContentPage>

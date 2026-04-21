@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:leads="clr-namespace:HarmoniAPP.Core.Models.Leads;assembly=HarmoniAPP.Core"
+             xmlns:customers="clr-namespace:HarmoniAPP.Core.Models.Customers;assembly=HarmoniAPP.Core"
+             xmlns:opportunities="clr-namespace:HarmoniAPP.Core.Models.Opportunities;assembly=HarmoniAPP.Core"
+             x:Class="HarmoniAPP.Mobile.Pages.PipelinePage"
+             SafeAreaEdges="All">
+
+    <Grid RowDefinitions="Auto,Auto,Auto,*"
+          Padding="20,8,20,20"
+          RowSpacing="14">
+        <VerticalStackLayout Spacing="6">
+            <Label Text="Visão do funil"
+                   Style="{StaticResource EyebrowStyle}" />
+            <Label Text="Leads, clientes e oportunidades em uma única navegação."
+                   Style="{StaticResource PageTitleStyle}" />
+            <Label x:Name="PipelineHintLabel"
+                   Text="Mude a camada do pipeline conforme a necessidade do time."
+                   Style="{StaticResource SecondaryTextStyle}" />
+        </VerticalStackLayout>
+
+        <Grid Grid.Row="1"
+              ColumnDefinitions="*,*,*"
+              ColumnSpacing="8">
+            <Button x:Name="LeadsSegmentButton"
+                    Text="Leads"
+                    Clicked="OnShowLeadsClicked" />
+            <Button x:Name="CustomersSegmentButton"
+                    Grid.Column="1"
+                    Text="Clientes"
+                    Clicked="OnShowCustomersClicked" />
+            <Button x:Name="OpportunitiesSegmentButton"
+                    Grid.Column="2"
+                    Text="Oportunidades"
+                    Clicked="OnShowOpportunitiesClicked" />
+        </Grid>
+
+        <Label Grid.Row="2"
+               x:Name="StatusLabel"
+               IsVisible="False"
+               Style="{StaticResource StatusTextStyle}" />
+
+        <RefreshView Grid.Row="3"
+                     x:Name="PipelineRefreshView"
+                     Refreshing="OnRefreshRequested">
+            <Grid>
+                <CollectionView x:Name="LeadsCollectionView"
+                                SelectionMode="None">
+                    <CollectionView.EmptyView>
+                        <Label Text="Nenhum lead encontrado para este contexto."
+                               Style="{StaticResource EmptyStateStyle}" />
+                    </CollectionView.EmptyView>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="leads:LeadItemResponse">
+                            <Border Style="{StaticResource CardBorderStyle}"
+                                    Margin="0,0,0,12">
+                                <VerticalStackLayout Spacing="10">
+                                    <Grid ColumnDefinitions="*,Auto"
+                                          ColumnSpacing="12">
+                                        <VerticalStackLayout Spacing="2">
+                                            <Label Text="{Binding Nome}"
+                                                   Style="{StaticResource CardTitleStyle}" />
+                                            <Label Text="{Binding Empresa}"
+                                                   Style="{StaticResource SecondaryTextStyle}" />
+                                        </VerticalStackLayout>
+
+                                        <Border Padding="10,6"
+                                                BackgroundColor="{StaticResource AccentSoft}"
+                                                StrokeThickness="0"
+                                                HorizontalOptions="End">
+                                            <Label Text="{Binding Status}"
+                                                   Style="{StaticResource ChipValueStyle}" />
+                                        </Border>
+                                    </Grid>
+
+                                    <Grid ColumnDefinitions="*,*"
+                                          ColumnSpacing="12">
+                                        <VerticalStackLayout Spacing="2">
+                                            <Label Text="Potencial"
+                                                   Style="{StaticResource CardCaptionStyle}" />
+                                            <Label Text="{Binding ValorPotencial, StringFormat='{}{0:C0}'}"
+                                                   Style="{StaticResource MetricValueStyle}" />
+                                        </VerticalStackLayout>
+
+                                        <VerticalStackLayout Spacing="2">
+                                            <Label Text="Follow-up"
+                                                   Style="{StaticResource CardCaptionStyle}" />
+                                            <Label Text="{Binding ProximoFollowUp, StringFormat='{}{0:dd MMM}'}"
+                                                   Style="{StaticResource MetricValueStyle}" />
+                                        </VerticalStackLayout>
+                                    </Grid>
+
+                                    <Label Text="{Binding Origem, StringFormat='Origem: {0}'}"
+                                           Style="{StaticResource SecondaryTextStyle}" />
+                                </VerticalStackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <CollectionView x:Name="CustomersCollectionView"
+                                IsVisible="False"
+                                SelectionMode="None">
+                    <CollectionView.EmptyView>
+                        <Label Text="Nenhum cliente encontrado para este contexto."
+                               Style="{StaticResource EmptyStateStyle}" />
+                    </CollectionView.EmptyView>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="customers:CustomerItemResponse">
+                            <Border Style="{StaticResource CardBorderStyle}"
+                                    Margin="0,0,0,12">
+                                <VerticalStackLayout Spacing="10">
+                                    <Grid ColumnDefinitions="*,Auto"
+                                          ColumnSpacing="12">
+                                        <VerticalStackLayout Spacing="2">
+                                            <Label Text="{Binding Empresa}"
+                                                   Style="{StaticResource CardTitleStyle}" />
+                                            <Label Text="{Binding ContatoPrincipal}"
+                                                   Style="{StaticResource SecondaryTextStyle}" />
+                                        </VerticalStackLayout>
+
+                                        <Border Padding="10,6"
+                                                BackgroundColor="{StaticResource AccentSoft}"
+                                                StrokeThickness="0"
+                                                HorizontalOptions="End">
+                                            <Label Text="{Binding Saude}"
+                                                   Style="{StaticResource ChipValueStyle}" />
+                                        </Border>
+                                    </Grid>
+
+                                    <Grid ColumnDefinitions="*,*"
+                                          ColumnSpacing="12">
+                                        <VerticalStackLayout Spacing="2">
+                                            <Label Text="Receita mensal"
+                                                   Style="{StaticResource CardCaptionStyle}" />
+                                            <Label Text="{Binding ReceitaMensal, StringFormat='{}{0:C0}'}"
+                                                   Style="{StaticResource MetricValueStyle}" />
+                                        </VerticalStackLayout>
+
+                                        <VerticalStackLayout Spacing="2">
+                                            <Label Text="Última interação"
+                                                   Style="{StaticResource CardCaptionStyle}" />
+                                            <Label Text="{Binding UltimaInteracao, StringFormat='{}{0:dd MMM}'}"
+                                                   Style="{StaticResource MetricValueStyle}" />
+                                        </VerticalStackLayout>
+                                    </Grid>
+
+                                    <Label Text="{Binding Segmento, StringFormat='Segmento: {0}'}"
+                                           Style="{StaticResource SecondaryTextStyle}" />
+                                </VerticalStackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <CollectionView x:Name="OpportunitiesCollectionView"
+                                IsVisible="False"
+                                SelectionMode="None">
+                    <CollectionView.EmptyView>
+                        <Label Text="Nenhuma oportunidade encontrada para este contexto."
+                               Style="{StaticResource EmptyStateStyle}" />
+                    </CollectionView.EmptyView>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="opportunities:OpportunityItemResponse">
+                            <Border Style="{StaticResource CardBorderStyle}"
+                                    Margin="0,0,0,12">
+                                <VerticalStackLayout Spacing="10">
+                                    <Grid ColumnDefinitions="*,Auto"
+                                          ColumnSpacing="12">
+                                        <VerticalStackLayout Spacing="2">
+                                            <Label Text="{Binding Titulo}"
+                                                   Style="{StaticResource CardTitleStyle}" />
+                                            <Label Text="{Binding Conta}"
+                                                   Style="{StaticResource SecondaryTextStyle}" />
+                                        </VerticalStackLayout>
+
+                                        <Border Padding="10,6"
+                                                BackgroundColor="{StaticResource AccentSoft}"
+                                                StrokeThickness="0"
+                                                HorizontalOptions="End">
+                                            <Label Text="{Binding Etapa}"
+                                                   Style="{StaticResource ChipValueStyle}" />
+                                        </Border>
+                                    </Grid>
+
+                                    <Grid ColumnDefinitions="*,*"
+                                          ColumnSpacing="12">
+                                        <VerticalStackLayout Spacing="2">
+                                            <Label Text="Valor"
+                                                   Style="{StaticResource CardCaptionStyle}" />
+                                            <Label Text="{Binding Valor, StringFormat='{}{0:C0}'}"
+                                                   Style="{StaticResource MetricValueStyle}" />
+                                        </VerticalStackLayout>
+
+                                        <VerticalStackLayout Spacing="2">
+                                            <Label Text="Fechamento"
+                                                   Style="{StaticResource CardCaptionStyle}" />
+                                            <Label Text="{Binding DataFechamentoEsperada, StringFormat='{}{0:dd MMM}'}"
+                                                   Style="{StaticResource MetricValueStyle}" />
+                                        </VerticalStackLayout>
+                                    </Grid>
+
+                                    <Label Text="{Binding Probabilidade, StringFormat='Probabilidade: {0}%'}"
+                                           Style="{StaticResource SecondaryTextStyle}" />
+                                    <Label Text="Estratégica"
+                                           IsVisible="{Binding Estrategica}"
+                                           Style="{StaticResource StatusTextStyle}" />
+                                </VerticalStackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
+        </RefreshView>
+    </Grid>
+</ContentPage>

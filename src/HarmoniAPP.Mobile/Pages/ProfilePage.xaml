@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HarmoniAPP.Mobile.Pages.ProfilePage"
+             SafeAreaEdges="All">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20,8,20,32"
+                             Spacing="16">
+            <VerticalStackLayout Spacing="6">
+                <Label Text="Perfil"
+                       Style="{StaticResource EyebrowStyle}" />
+                <Label Text="Seu contexto de acesso e informações do app."
+                       Style="{StaticResource PageTitleStyle}" />
+                <Label x:Name="StatusLabel"
+                       IsVisible="False"
+                       Style="{StaticResource StatusTextStyle}" />
+            </VerticalStackLayout>
+
+            <Border Style="{StaticResource HeroCardStyle}">
+                <VerticalStackLayout Spacing="8">
+                    <Label x:Name="DisplayNameLabel"
+                           Text="Usuário Harmoni"
+                           Style="{StaticResource HeroTitleStyle}" />
+                    <Label x:Name="AccessLabel"
+                           Text="Perfil e equipe"
+                           Style="{StaticResource SecondaryTextStyle}" />
+                    <Border Padding="10,6"
+                            BackgroundColor="{StaticResource AccentSoft}"
+                            StrokeThickness="0"
+                            HorizontalOptions="Start">
+                        <Label x:Name="VisibilityLabel"
+                               Text="Escopo do acesso"
+                               Style="{StaticResource ChipValueStyle}" />
+                    </Border>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Style="{StaticResource CardBorderStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Aplicativo"
+                           Style="{StaticResource CardCaptionStyle}" />
+                    <Label x:Name="AppVersionLabel"
+                           Style="{StaticResource CardTitleStyle}" />
+                    <Label Text="Layout priorizado para iPhone 13 em orientação retrato."
+                           Style="{StaticResource SecondaryTextStyle}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Style="{StaticResource CardBorderStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Conectividade"
+                           Style="{StaticResource CardCaptionStyle}" />
+                    <Label x:Name="ApiBaseUrlLabel"
+                           Style="{StaticResource CardTitleStyle}" />
+                    <Label Text="Para iPhone físico, a API precisa estar publicada em um host HTTPS acessível pelo aparelho."
+                           Style="{StaticResource SecondaryTextStyle}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Button Text="Sair da sessão"
+                    Style="{StaticResource PrimaryActionButtonStyle}"
+                    Clicked="OnLogoutClicked" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

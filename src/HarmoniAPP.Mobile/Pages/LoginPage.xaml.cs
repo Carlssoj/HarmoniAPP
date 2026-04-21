@@ -1,17 +1,17 @@
 using HarmoniAPP.Core.Services;
-using Microsoft.Extensions.DependencyInjection;
+using HarmoniAPP.Mobile.Services;
 
 namespace HarmoniAPP.Mobile.Pages;
 
 public partial class LoginPage : ContentPage
 {
     private readonly AuthApiClient _authApiClient;
-    private readonly IServiceProvider _serviceProvider;
+    private readonly AppNavigator _appNavigator;
 
-    public LoginPage(AuthApiClient authApiClient, IServiceProvider serviceProvider)
+    public LoginPage(AuthApiClient authApiClient, AppNavigator appNavigator)
     {
         _authApiClient = authApiClient;
-        _serviceProvider = serviceProvider;
+        _appNavigator = appNavigator;
         InitializeComponent();
     }
 
@@ -19,18 +19,23 @@ public partial class LoginPage : ContentPage
     {
         try
         {
-            StatusLabel.Text = "Autenticando...";
             var login = LoginEntry.Text?.Trim() ?? string.Empty;
             var password = PasswordEntry.Text ?? string.Empty;
 
+            LoginButton.IsEnabled = false;
+            StatusLabel.IsVisible = false;
+
             await _authApiClient.LoginAsync(login, password);
-            var dashboardPage = _serviceProvider.GetRequiredService<DashboardPage>();
-            await Navigation.PushAsync(dashboardPage);
-            Navigation.RemovePage(this);
+            await _appNavigator.ShowAuthenticatedAsync();
         }
         catch (Exception ex)
         {
-            StatusLabel.Text = $"Falha no login: {ex.Message}";
+            StatusLabel.Text = MobileErrorFormatter.Format(ex);
+            StatusLabel.IsVisible = true;
+        }
+        finally
+        {
+            LoginButton.IsEnabled = true;
         }
     }
 }

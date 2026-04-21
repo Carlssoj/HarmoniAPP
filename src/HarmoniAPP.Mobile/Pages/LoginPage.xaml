@@ -2,32 +2,57 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HarmoniAPP.Mobile.Pages.LoginPage"
-             Title="Entrar">
+             NavigationPage.HasNavigationBar="False"
+             SafeAreaEdges="All">
 
-    <ScrollView>
-        <VerticalStackLayout Padding="24" Spacing="18">
-            <Label Text="HarmoniAPP"
-                   FontSize="28"
-                   FontAttributes="Bold" />
+    <Grid Padding="20,20,20,24"
+          RowDefinitions="Auto,*">
+        <Border Style="{StaticResource HeroCardStyle}">
+            <VerticalStackLayout Spacing="10">
+                <Label Text="Harmoni"
+                       Style="{StaticResource EyebrowStyle}" />
+                <Label Text="Sua operação comercial, pronta para a rotina do iPhone."
+                       Style="{StaticResource HeroTitleStyle}" />
+                <Label Text="Entre com seu usuário do CRM para acessar o resumo, o pipeline, a agenda e as interações."
+                       Style="{StaticResource SecondaryTextStyle}" />
+            </VerticalStackLayout>
+        </Border>
 
-            <Label Text="Login mobile integrado ao HarmoniCRM"
-                   FontSize="16"
-                   TextColor="#6D5B52" />
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="0,18,0,0"
+                                 Spacing="14">
+                <Border Style="{StaticResource FormFieldBorderStyle}">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Usuário ou e-mail"
+                               Style="{StaticResource FieldLabelStyle}" />
+                        <Entry x:Name="LoginEntry"
+                               Placeholder="admin ou seu e-mail"
+                               Keyboard="Email" />
+                    </VerticalStackLayout>
+                </Border>
 
-            <Entry x:Name="LoginEntry"
-                   Placeholder="Usuário ou e-mail"
-                   Keyboard="Email" />
+                <Border Style="{StaticResource FormFieldBorderStyle}">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Senha"
+                               Style="{StaticResource FieldLabelStyle}" />
+                        <Entry x:Name="PasswordEntry"
+                               Placeholder="Digite sua senha"
+                               IsPassword="True" />
+                    </VerticalStackLayout>
+                </Border>
 
-            <Entry x:Name="PasswordEntry"
-                   Placeholder="Senha"
-                   IsPassword="True" />
+                <Label x:Name="StatusLabel"
+                       IsVisible="False"
+                       Style="{StaticResource StatusTextStyle}" />
 
-            <Label x:Name="StatusLabel"
-                   TextColor="#9B5A3C"
-                   FontSize="13" />
+                <Button x:Name="LoginButton"
+                        Text="Entrar no Harmoni"
+                        Style="{StaticResource PrimaryActionButtonStyle}"
+                        Clicked="OnLoginClicked" />
 
-            <Button Text="Entrar"
-                    Clicked="OnLoginClicked" />
-        </VerticalStackLayout>
-    </ScrollView>
+                <Label Text="Foco visual otimizado para iPhone 13 em orientação retrato."
+                       Style="{StaticResource SecondaryTextStyle}" />
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
 </ContentPage>

@@ -40,7 +40,15 @@ public sealed class AuthApiClient
         }
 
         _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-        return await _httpClient.GetFromJsonAsync<AuthenticatedUserResponse>("api/v1/auth/me", cancellationToken);
+        try
+        {
+            return await _httpClient.GetFromJsonAsync<AuthenticatedUserResponse>("api/v1/auth/me", cancellationToken);
+        }
+        catch (HttpRequestException httpRequestException) when (httpRequestException.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+        {
+            await _tokenStore.ClearAsync();
+            return null;
+        }
     }
 
     public Task LogoutAsync() => _tokenStore.ClearAsync();

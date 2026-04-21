@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HarmoniAPP.Mobile.Pages.CreateInteractionPage"
+             SafeAreaEdges="All"
+             Title="Nova interação">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20,16,20,32"
+                             Spacing="14">
+            <Label Text="Registre um contato, reunião ou marco importante sem sair do iPhone."
+                   Style="{StaticResource SecondaryTextStyle}" />
+
+            <Border Style="{StaticResource FormFieldBorderStyle}">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Assunto"
+                           Style="{StaticResource FieldLabelStyle}" />
+                    <Entry x:Name="SubjectEntry"
+                           Placeholder="Ex: Reunião de alinhamento mensal" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Grid ColumnDefinitions="*,*"
+                  ColumnSpacing="12">
+                <Border Style="{StaticResource FormFieldBorderStyle}">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Tipo"
+                               Style="{StaticResource FieldLabelStyle}" />
+                        <Picker x:Name="TypePicker"
+                                Title="Selecione" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Grid.Column="1"
+                        Style="{StaticResource FormFieldBorderStyle}">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Registro"
+                               Style="{StaticResource FieldLabelStyle}" />
+                        <Picker x:Name="RecordTypePicker"
+                                Title="Selecione" />
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+            <Border Style="{StaticResource FormFieldBorderStyle}">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Relacionado a"
+                           Style="{StaticResource FieldLabelStyle}" />
+                    <Entry x:Name="RelatedToEntry"
+                           Placeholder="Conta, lead, cliente ou oportunidade" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Style="{StaticResource FormFieldBorderStyle}">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Resumo"
+                           Style="{StaticResource FieldLabelStyle}" />
+                    <Editor x:Name="SummaryEditor"
+                            AutoSize="TextChanges"
+                            Placeholder="O que aconteceu nesta interação?" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Grid ColumnDefinitions="*,*"
+                  ColumnSpacing="12">
+                <Border Style="{StaticResource FormFieldBorderStyle}">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Data"
+                               Style="{StaticResource FieldLabelStyle}" />
+                        <DatePicker x:Name="OccurredOnDatePicker" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Grid.Column="1"
+                        Style="{StaticResource FormFieldBorderStyle}">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Próxima ação"
+                               Style="{StaticResource FieldLabelStyle}" />
+                        <DatePicker x:Name="NextActionDatePicker" />
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+            <Border Style="{StaticResource FormFieldBorderStyle}">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Texto da próxima ação"
+                           Style="{StaticResource FieldLabelStyle}" />
+                    <Entry x:Name="NextActionEntry"
+                           Placeholder="Ex: Enviar minuta da proposta" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Label x:Name="StatusLabel"
+                   IsVisible="False"
+                   Style="{StaticResource StatusTextStyle}" />
+
+            <Grid ColumnDefinitions="*,*"
+                  ColumnSpacing="12">
+                <Button Text="Cancelar"
+                        Style="{StaticResource SecondaryActionButtonStyle}"
+                        Clicked="OnCancelClicked" />
+                <Button Grid.Column="1"
+                        x:Name="SaveButton"
+                        Text="Salvar interação"
+                        Style="{StaticResource PrimaryActionButtonStyle}"
+                        Clicked="OnSaveClicked" />
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
